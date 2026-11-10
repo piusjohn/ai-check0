@@ -26,6 +26,11 @@ from pydantic import BaseModel, Field, field_validator, model_validator
 def format_system_prompt(role: str, context: str, query: str) -> str:
     """Format prompt string stripping whitespace from all inputs: 'Role: {role}\nContext: {context}\nQuery: {query}'."""
     # TODO: Implement Exercise 01.01
+    str_role = role.strip()
+    str_context = context.strip()
+    str_query = query.strip()
+    formatted_prompt = f"Role: {str_role}\nContext: {str_context}\nQuery: {str_query}"
+    return formatted_prompt
     raise NotImplementedError('Implement Exercise 01.01: format_system_prompt')
 
 
@@ -33,6 +38,10 @@ def format_system_prompt(role: str, context: str, query: str) -> str:
 def estimate_tokens(text: str) -> int:
     """Estimate token count using 1 token ~= 4 chars, rounded up. Return 0 for empty string."""
     # TODO: Implement Exercise 01.02
+    if not text:
+        return 0
+    estimated_tokens = math.ceil(len(text) / 4)
+    return estimated_tokens
     raise NotImplementedError('Implement Exercise 01.02: estimate_tokens')
 
 
@@ -40,6 +49,7 @@ def estimate_tokens(text: str) -> int:
 def clean_generation(raw_output: str, stop_token: str = '<|endoftext|>') -> str:
     """Remove all occurrences of stop_token and truncate everything at/after '### END', then strip."""
     # TODO: Implement Exercise 01.03
+    
     raise NotImplementedError('Implement Exercise 01.03: clean_generation')
 
 
